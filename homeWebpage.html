@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Header of the website-->
+<head>
+	<title> Home Screen </title>
+	<meta charset="utf-8">
+	<!--<base href="/home.html">(if more pages are needed)-->
+
+	<!--CSS-->
+	<style>
+		div { /*color background = black (000000)*/
+			background-color: #000000
+		}
+		title { /*center title*/
+			text-align: center;
+		}
+		calendar { /*center calendar*/
+			text-align: center;
+		}
+		map { /*center map*/
+			text-align: center;
+		}
+	</style>
+</head>
+
+<!--Body of the website-->
+<body>
+	<!--title class for mainpulation of the title of page-->
+	<div id="title">
+		<h1>
+			<strong>
+				<font size="12pt">
+				<font color="ffffff"> <!--color = white-->
+					Home Page
+				</font>
+				</font>
+			</strong>
+		</h1>
+	</div>
+	<!--div holding calendar API-->
+	<div id="calendar">
+		<!--include api from developers.google.com-->
+	</div>
+	<!--div holding map API-->
+	<!--include api from developers.google.com-->
+	<div id="maps" style="width:400px;height:400px;">
+		Local Map
+	</div>
+	<!--links class for manipulation of the links section of the page-->
+	<div id="links">
+
+	</div>
+
+<!--JS-->
+<script>
+	function myMap() {
+		var mapCanvas=document.getElementById("maps");
+		var mapOptions= {
+			center: new google.maps.LatLng(30.377045, -91.112771);
+			zoom: 14;
+		}
+		var map=new google.maps.Map(mapCanvas, mapOptions);
+	}
+</script>
+
+<script src="https://maps.googleapis.com/map/api/js?key=YOUR_KEY&callback=myMap">
+</script>
+
+</body>
+</html>
