@@ -9,17 +9,10 @@
 
 	<!--CSS-->
 	<style>
-		div { /*color background = black (000000)*/
-			background-color: #000000
-		}
-		title { /*center title*/
+		div { /*color background = white (000000)*/
+			background-color: #ffffff;
 			text-align: center;
-		}
-		calendar { /*center calendar*/
-			text-align: center;
-		}
-		map { /*center map*/
-			text-align: center;
+
 		}
 	</style>
 </head>
@@ -31,7 +24,7 @@
 		<h1>
 			<strong>
 				<font size="12pt">
-				<font color="ffffff"> <!--color = white-->
+				<font color="000000"> <!--color = black-->
 					Home Page
 				</font>
 				</font>
@@ -40,13 +33,14 @@
 	</div>
 	<!--div holding calendar API-->
 	<div id="calendar">
-		<!--include api from developers.google.com-->
+		<script>start();</script>Calendar
 	</div>
 	<!--div holding map API-->
 	<!--include api from developers.google.com-->
 	<div id="maps" style="width:400px;height:400px;">
-		Local Map
+		<script>myMap();</script>Local Map
 	</div>
+
 	<!--links class for manipulation of the links section of the page-->
 	<div id="links">
 
@@ -64,7 +58,31 @@
 	}
 </script>
 
-<script src="https://maps.googleapis.com/map/api/js?key=YOUR_KEY&callback=myMap">
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+function start() {
+  // 2. Initialize the JavaScript client library.
+  gapi.client.init({
+    'apiKey': 'AIzaSyAUZdZYN9az4VLisQXdAjijaP82_PaQztA',
+    // Your API key will be automatically added to the Discovery Document URLs.
+    'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+    // clientId and scope are optional if auth is not required.
+    'clientId': '761679732736-s87a76ofc654d896ht4nhlfk7vdkep4n.apps.googleusercontent.com	',
+    'scope': 'profile',
+  }).then(function() {
+    // 3. Initialize and make the API request.
+    return gapi.client.people.people.get({
+      'resourceName': 'people/me',
+      'requestMask.includeField': 'person.names'
+    });
+  }).then(function(response) {
+    console.log(response.result);
+  }, function(reason) {
+    console.log('Error: ' + reason.result.error.message);
+  });
+};
+// 1. Load the JavaScript client library.
+gapi.load('client', start);
 </script>
 
 </body>
